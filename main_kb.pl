@@ -301,7 +301,7 @@ heuristic(S,H) :-
 heuristicPickAction(_,_,exitCave) :-  a_hasGold. %If hunter has gold, proceed to exit
 heuristicPickAction(_,_,grabGold) :- \+a_hasGold, a_perceiveGlitter(_R). %If doesn't have gold but knows where it is, go get it
 heuristicPickAction(_,_,shootWumpus) :- certainWumpusExhaustive(_RW),a_hasArrow,\+a_perceiveScream. %If is certain of where the Wumpus is, has arrow and Wumpus is alive, shoot him
-heuristicPickAction(P,R,move(R)) :- format('P: ~w~n~n', P), P < 100, !. %Only move if best room to explore is not dangerous
+heuristicPickAction(P,R,move(R)) :- format('P: ~w~n~n', P), P < 1000, !. %Only move if best room to explore is not dangerous
 heuristicPickAction(_,_,exitCave).  %If no rooms to explore, exit cave
 
 getBetterExplorableRoom(_S,[],5000,_R) :- !. %Only run ranking of rooms if there are rooms to rank
@@ -389,12 +389,12 @@ doActions(shoot,do(shoot, S0),S0).
 % In this version of the program, one should use the runManyMaps(N0,NF)
 % clause to run a bunch of maps in sequence.
 runManyMaps(N0,NF) :- %Runs map N0 until NF inclusive in sequence.
-    consult('/home/mateusz/repos/pk-papers/inteligencja-obliczeniowa/wyklad-2023/wumpus/worldBuilder.pl'), %This file has information for different maps
+    consult('C:/Users/Pawel/Desktop/IntObl/IO-LAB-02/worldBuilder.pl'), %This file has information for different maps
     make, %Reset files if changed
     runInSequence(N0,NF). %Runs many maps in sequence
 
 run :-
-    consult('/home/mateusz/repos/pk-papers/inteligencja-obliczeniowa/wyklad-2023/wumpus/worldBuilder.pl'), %This file has information for different maps
+    consult('C:/Users/Pawel/Desktop/IntObl/IO-LAB-02/worldBuilder.pl'), %This file has information for different maps
     run(1). %Ruins AIMA Map
 
 
